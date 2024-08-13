@@ -5,7 +5,6 @@ givenTestData = ["NFLX","MSFT", "TSLA"]
 driver = webdriver.Chrome()
 driver.maximize_window()
 driver.get("https://www.google.com/finance/")
-""" symbols = driver.find_element(By.XPATH, "//section[@aria-labelledby='smart-watchlist-title']//div[contains(@class, 'COaKTb')]") """
 stocks = driver.find_elements(By.XPATH, "//section[@aria-labelledby='smart-watchlist-title']//div[contains(@class, 'COaKTb')]")
 q3 = []
 q4 = []
@@ -22,7 +21,7 @@ pageTitle = driver.title
 
 try:
     try:
-       assert 'Google Finance' in pageTitle
+        assert 'Google Finance' in pageTitle
     except AssertionError as e:
         assertion_results.append(f"Assertion failed for page title: {str(e)}")
     try:
@@ -39,4 +38,3 @@ finally:
 
 print(q3)
 print(q4)
-
