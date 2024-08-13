@@ -10,11 +10,14 @@ stocks = driver.find_elements(By.XPATH, elementsXpath)
 q3 = []
 q4 = []
 assertion_results = []
+
+
 def notInTestDataTest():
     for stock in stocks:
         if stock not in givenTestData:
             q3.append(stock.text)
     print(q3)
+
 
 def inTestDataTest():
     for testStock in givenTestData:
@@ -22,13 +25,17 @@ def inTestDataTest():
             q4.append(testStock)
     print(q4)
 
+
 pageTitle = driver.title
+
 
 def titleTest():
     try:
         assert "Google Finance" in pageTitle
     except AssertionError as e:
         assertion_results.append(f"Assertion failed for page title: {str(e)}")
+
+
 def stockCopmare():
     try:
         for testStock in givenTestData:
@@ -36,3 +43,4 @@ def stockCopmare():
                 assert stock.text == testStock
     except AssertionError as e:
         assertion_results.append(f"Assertion failed for the two list: {str(e)}")
+
