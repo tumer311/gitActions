@@ -10,32 +10,29 @@ stocks = driver.find_elements(By.XPATH, elementsXpath)
 q3 = []
 q4 = []
 assertion_results = []
-for stock in stocks:
-    if stock not in givenTestData:
-        q3.append(stock.text)
+def notInTestDataTest():
+    for stock in stocks:
+        if stock not in givenTestData:
+            q3.append(stock.text)
+    print(q3)
 
-for testStock in givenTestData:
-    if testStock not in stocks:
-        q4.append(testStock)
+def inTestDataTest():
+    for testStock in givenTestData:
+        if testStock not in stocks:
+            q4.append(testStock)
+    print(q4)
 
 pageTitle = driver.title
 
-try:
+def titleTest():
     try:
         assert "Google Finance" in pageTitle
     except AssertionError as e:
         assertion_results.append(f"Assertion failed for page title: {str(e)}")
+def stockCopmare():
     try:
         for testStock in givenTestData:
             for stock in stocks:
                 assert stock.text == testStock
     except AssertionError as e:
         assertion_results.append(f"Assertion failed for the two list: {str(e)}")
-
-finally:
-    # Print all assertion results after the test completes
-    for result in assertion_results:
-        print(result)
-
-print(q3)
-print(q4)
