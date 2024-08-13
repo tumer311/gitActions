@@ -1,11 +1,12 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
-givenTestData = ["NFLX","MSFT", "TSLA"]
+givenTestData = ["NFLX", "MSFT", "TSLA"]
 driver = webdriver.Chrome()
 driver.maximize_window()
 driver.get("https://www.google.com/finance/")
-stocks = driver.find_elements(By.XPATH, "//section[@aria-labelledby='smart-watchlist-title']//div[contains(@class, 'COaKTb')]")
+stocks = driver.find_elements(By.XPATH, "//section[@aria-labelledby=" 
+                              + "'smart-watchlist-title']//div[contains(@class, 'COaKTb')]")
 q3 = []
 q4 = []
 assertion_results = []
