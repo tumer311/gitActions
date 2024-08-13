@@ -5,8 +5,8 @@ givenTestData = ["NFLX", "MSFT", "TSLA"]
 driver = webdriver.Chrome()
 driver.maximize_window()
 driver.get("https://www.google.com/finance/")
-stocks = driver.find_elements(By.XPATH, "//section[@aria-labelledby="
-                              + "'smart-watchlist-title']//div[contains(@class, 'COaKTb')]")
+elementsXpath = "//section[@aria-labelledby='smart-watchlist-title']//div[contains(@class, 'COaKTb')]"
+stocks = driver.find_elements(By.XPATH, elementsXpath)
 q3 = []
 q4 = []
 assertion_results = []
