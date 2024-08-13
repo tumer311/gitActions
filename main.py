@@ -22,7 +22,7 @@ pageTitle = driver.title
 
 try:
     try:
-        assert 'Google Finance' in pageTitle
+        assert "Google Finance" in pageTitle
     except AssertionError as e:
         assertion_results.append(f"Assertion failed for page title: {str(e)}")
     try:
