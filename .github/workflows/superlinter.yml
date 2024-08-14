@@ -1,17 +1,45 @@
-name: Super-Linter
+name: Run Tests
 
-on: push
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs nightly at midnight
+  workflow_dispatch:
+    inputs:
+      testType:
+        description: 'Select the type of test to run'
+        required: true
+        default: 'full'
+        type: choice
+        options:
+          - full
+          - notInTestDataTest
+          - inTestDataTest
 
 jobs:
-  super-lint:
-    name: Lint code base
+  run-tests:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-      - name: Run Super-Linter
-        uses: github/super-linter@v4
-        env:
-          DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run tests
+        run: |
+          if [ "${{ github.event_name }}" == "schedule" ] || [ "${{ github.event.inputs.testType }}" == "full" ]; then
+            echo "Running full test suite..."
+            pytest
+          elif [ "${{ github.event.inputs.testType }}" == "notInTestDataTest" ]; then
+            echo "Running notInTestDataTest..."
+            pytest /main.py
+          elif [ "${{ github.event.inputs.testType }}" == "inTestDataTest" ]; then
+            echo "Running inTestDataTest..."
+            pytest /main.py
+          fi
