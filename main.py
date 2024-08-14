@@ -43,4 +43,3 @@ def stockCopmare():
                 assert stock.text == testStock
     except AssertionError as e:
         assertion_results.append(f"Assertion failed for the two list: {str(e)}")
-
