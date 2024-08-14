@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 
 chrome_options = Options()
@@ -10,7 +11,8 @@ chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument("--window-size=1920x1080")
 
 givenTestData = ["NFLX", "MSFT", "TSLA"]
-driver = webdriver.Chrome()
+service = Service(executable_path="/usr/bin/chromedriver")
+driver = webdriver.Chrome(service=service, options=chrome_options)
 driver.maximize_window()
 driver.get("https://www.google.com/finance/")
 elementsXpath = "//section[@aria-labelledby='smart-watchlist-title']//div[contains(@class, 'COaKTb')]"
