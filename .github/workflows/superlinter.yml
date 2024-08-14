@@ -38,8 +38,8 @@ jobs:
             pytest
           elif [ "${{ github.event.inputs.testType }}" == "notInTestDataTest" ]; then
             echo "Running notInTestDataTest..."
-            pytest /main.py
+            pytest main.py
           elif [ "${{ github.event.inputs.testType }}" == "inTestDataTest" ]; then
             echo "Running inTestDataTest..."
-            pytest /main.py
+            pytest main.py
           fi
