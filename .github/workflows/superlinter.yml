@@ -32,7 +32,14 @@ jobs:
           pip install pytest # Ensure pytest is installed
           pip install selenium
 
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+
       - name: Run tests
+        env:
+          DISPLAY: ":99.0"  # Set display environment variable for headless
         run: |
           if [ "${{ github.event_name }}" == "schedule" ] || [ "${{ github.event.inputs.testType }}" == "full" ]; then
             echo "Running full test suite..."
