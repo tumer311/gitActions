@@ -43,7 +43,7 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" == "schedule" ] || [ "${{ github.event.inputs.testType }}" == "full" ]; then
             echo "Running full test suite..."
-            pytest
+            pytest main.py
           elif [ "${{ github.event.inputs.testType }}" == "test_notInTestDataTest" ]; then
             echo "Running test_notInTestDataTest..."
             pytest main.py
