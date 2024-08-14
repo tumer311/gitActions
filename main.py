@@ -22,14 +22,14 @@ q4 = []
 assertion_results = []
 
 
-def notInTestDataTest():
+def test_notInTestDataTest():
     for stock in stocks:
         if stock not in givenTestData:
             q3.append(stock.text)
     print(q3)
 
 
-def inTestDataTest():
+def test_inTestDataTest():
     for testStock in givenTestData:
         if testStock not in stocks:
             q4.append(testStock)
@@ -39,14 +39,14 @@ def inTestDataTest():
 pageTitle = driver.title
 
 
-def titleTest():
+def test_titleTest():
     try:
         assert "Google Finance" in pageTitle
     except AssertionError as e:
         assertion_results.append(f"Assertion failed for page title: {str(e)}")
 
 
-def stockCopmare():
+def test_stockCopmare():
     try:
         for testStock in givenTestData:
             for stock in stocks:
