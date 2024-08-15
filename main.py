@@ -27,7 +27,7 @@ for stock in stocks:
 
 
 def test_notInTestDataTest():
-    for stock in stocks:
+    for stock in stocksConvertedToString:
         if stock not in givenTestData:
             q3.append(stock)
     print(q3)
@@ -35,7 +35,7 @@ def test_notInTestDataTest():
 
 def test_inTestDataTest():
     for testStock in givenTestData:
-        if testStock not in stocks:
+        if testStock not in stocksConvertedToString:
             q4.append(testStock)
     print(q4)
 
