@@ -43,11 +43,11 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" == "schedule" ] || [ "${{ github.event.inputs.testType }}" == "full" ]; then
             echo "Running full test suite..."
-            pytest main.py
+            pytest PageFactoryTest/tests/test_google_finance.py
           elif [ "${{ github.event.inputs.testType }}" == "test_notInTestDataTest" ]; then
             echo "Running test_notInTestDataTest..."
-            pytest main.py
+            pytest PageFactoryTest/tests/test_google_finance.py
           elif [ "${{ github.event.inputs.testType }}" == "test_inTestDataTest" ]; then
             echo "Running test_inTestDataTest..."
-            pytest main.py
+            pytest PageFactoryTest/tests/test_google_finance.py
           fi
